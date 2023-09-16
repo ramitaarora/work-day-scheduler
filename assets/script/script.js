@@ -2,11 +2,11 @@ var currentDay = $('#currentDay');
 var today = dayjs().format('dddd, MMMM, D'); // not recognizing ordinal 'Do'
 var currentTime = Number(dayjs().format('HH'));
 var saveButton = $('.saveBtn');
+var appointment = $('#appointment-added');
 
 var timeBlock = $('.time-block');
 var timeRow = timeBlock.children('div');
-
-var appointment = $('#appointment-added');
+var textArea = timeBlock.children('textarea');
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
@@ -14,6 +14,12 @@ var appointment = $('#appointment-added');
 
 $(function () {
   appointment.addClass('hidden');
+
+  for (let i=0; i < timeBlock.length; i++) {
+    if (localStorage.getItem(timeBlock[i].id)) {
+      textArea[i].value = localStorage.getItem(timeBlock[i].id);
+    }
+  }
 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
