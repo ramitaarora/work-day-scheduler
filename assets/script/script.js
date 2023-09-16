@@ -1,13 +1,29 @@
 var currentDay = $('#currentDay');
 var today = dayjs().format('dddd, MMMM, D'); // not recognizing ordinal 'Do'
+var currentTime = Number(dayjs().format('HH'));
+//console.log("currentTime", currentTime.slice(0,2));
 
-
+var timeBlock = $('.time-block');
+var timeRow = timeBlock.children('div');
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
   currentDay.text(today);
+
+  for (let i=0; i < timeRow.length; i++) {
+    var timeSlice = Number((timeRow[i].parentElement.id).slice(5))
+    if (timeSlice === currentTime) {
+      (timeRow[i].parentElement).setAttribute('class', 'row time-block present');
+    }
+    if (timeSlice < currentTime) {
+      (timeRow[i].parentElement).setAttribute('class', 'row time-block past');
+    }
+    if (timeSlice > currentTime) {
+      (timeRow[i].parentElement).setAttribute('class', 'row time-block future');
+    }
+  }
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -27,3 +43,13 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+
+  //var timeIndex;
+      //timeIndex = i;
+    // for (let i=0; i < timeRow.length; i++) {
+    //   if (i < timeIndex) {
+    //     (timeRow[i].parentElement).setAttribute('class', 'row time-block past');
+    //   } if (i > timeIndex) {
+    //     (timeRow[i].parentElement).setAttribute('class', 'row time-block future');
+    //   }
+    // }
