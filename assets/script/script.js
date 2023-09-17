@@ -32,19 +32,15 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
 
-  saveButton.on('click', function(event) {
+  $('.saveBtn').on('click', 'i', function(event) {
     event.preventDefault();
-    var storageID = saveButton.parent().attr('id');
-    var textValue = saveButton.parent().children('textarea').val();
+    var storageID = $(this).parent().parent().attr('id');
+    var textValue = $(this).parent().parent().children('textarea').val();
 
     if (textValue) {
       localStorage.setItem(storageID, textValue);
       appointment.removeClass('hidden');
     }
-
-    //console.log(saveButton.parent().children('textarea').text());
-
-    // get the idea, according to the id, get the value of the textarea and set the textarea text of that value in localStorage
   })
 
   // TODO: Add code to apply the past, present, or future class to each time
