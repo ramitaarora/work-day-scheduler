@@ -1,5 +1,5 @@
 var currentDay = $('#currentDay');
-var today = dayjs().format('dddd, MMMM, D'); // not recognizing ordinal 'Do'
+var today = dayjs().format('dddd, MMMM D');
 var currentTime = Number(dayjs().format('HH'));
 var saveButton = $('.saveBtn');
 var appointment = $('#appointment-added');
@@ -64,4 +64,15 @@ $(function () {
   // TODO: Add code to display the current date in the header of the page.
 
   currentDay.text(today);
+
+  if (today.slice(-1) == 1) {
+    currentDay.append('st');
+  } else if (today.slice(-1) == 2) {
+    currentDay.append('nd');
+  } else if (today.slice(-1) == 3) {
+    currentDay.append('rd');
+  } else {
+    currentDay.append('th');
+  }
+
 });
