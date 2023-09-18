@@ -34,22 +34,16 @@ $(function () {
     event.preventDefault();
     var storageID = $(this).parent().parent().attr('id');
     var textValue = $(this).parent().parent().children('textarea').val();
-
-    if (textValue) {
-      localStorage.setItem(storageID, textValue);
-      appointment.removeClass('hidden');
-    }
+    localStorage.setItem(storageID, textValue);
+    appointment.removeClass('hidden');
   })
 
   $('.saveBtn').on('click', function(event) {
     event.preventDefault();
     var storageID = $(this).parent().attr('id');
     var textValue = $(this).parent().children('textarea').val();
-
-    if (textValue) {
-      localStorage.setItem(storageID, textValue);
-      appointment.removeClass('hidden');
-    }
+    localStorage.setItem(storageID, textValue);
+    appointment.removeClass('hidden');
   })
 
   currentDay.text(today);
