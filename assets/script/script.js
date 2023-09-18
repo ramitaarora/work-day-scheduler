@@ -65,14 +65,18 @@ $(function () {
 
   currentDay.text(today);
 
-  if (today.slice(-1) == 1) {
-    currentDay.append('st');
-  } else if (today.slice(-1) == 2) {
-    currentDay.append('nd');
-  } else if (today.slice(-1) == 3) {
-    currentDay.append('rd');
-  } else {
-    currentDay.append('th');
+  function setOrdinal() {
+    if (today.slice(-1) == 1) {
+      currentDay.append('st');
+    } else if (today.slice(-1) == 2) {
+      currentDay.append('nd');
+    } else if (today.slice(-1) == 3) {
+      currentDay.append('rd');
+    } else {
+      currentDay.append('th');
+    }
   }
+
+  setOrdinal();
 
 });
